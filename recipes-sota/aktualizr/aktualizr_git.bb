@@ -30,8 +30,8 @@ SRC_URI = " \
 SRC_URI[garagesign.md5sum] = "3e1ae6d49cc66fda37cef47f849d9609"
 SRC_URI[garagesign.sha256sum] = "8d49b83efa222db2f092ee14348459ee1bfd048552b57c3cb5ab48db8e347d82"
 
-SRCREV = "2403384097448042c825c485e905deb130ce9fcc"
-BRANCH ?= "master"
+SRCREV = "45484192ed2f5074ed1f965b6d37bdab1841676c"
+BRANCH ?= "feat/OTA-4174/direct-ostree-update-ip-secondary"
 
 S = "${WORKDIR}/git"
 
