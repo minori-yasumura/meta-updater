@@ -30,8 +30,8 @@ SRC_URI = " \
 SRC_URI[garagesign.md5sum] = "3e1ae6d49cc66fda37cef47f849d9609"
 SRC_URI[garagesign.sha256sum] = "8d49b83efa222db2f092ee14348459ee1bfd048552b57c3cb5ab48db8e347d82"
 
-SRCREV = "6633d0d0e6353fdf8970001dc8da70e6a28203cd"
-BRANCH ?= "master"
+SRCREV = "c47efe6ef528d6289046f4400c96a05f3fe743a3"
+BRANCH ?= "fix/secondary-root-version-bump-keep"
 
 S = "${WORKDIR}/git"
 
