@@ -14,6 +14,9 @@ from testutils import qemu_launch, qemu_send_command, qemu_terminate, \
     qemu_bake_image, qemu_boot_image
 
 
+UBOOT_ENABLE = 'yes'
+
+
 class GeneralTests(OESelftestTestCase):
     def test_credentials(self):
         logger = logging.getLogger("selftest")
@@ -86,7 +89,7 @@ class SharedCredProvTests(OESelftestTestCase):
         self.append_config('SOTA_CLIENT_PROV = " aktualizr-shared-prov "')
         self.append_config('IMAGE_FSTYPES_remove = "ostreepush garagesign garagecheck"')
         self.append_config('SOTA_HARDWARE_ID = "plain_reibekuchen_314"')
-        self.qemu, self.s = qemu_launch(machine='qemux86-64')
+        self.qemu, self.s = qemu_launch(machine='qemux86-64', uboot_enable=UBOOT_ENABLE)
 
     def tearDownLocal(self):
         qemu_terminate(self.s)
