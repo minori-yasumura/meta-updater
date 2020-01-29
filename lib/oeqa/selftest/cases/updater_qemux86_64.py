@@ -347,7 +347,8 @@ class IpSecondaryTests(OESelftestTestCase):
             self.sndry_hw_id = 'qemux86-64-oeselftest-sndry'
             self.id = (self.sndry_hw_id, self.sndry_serial)
             super(IpSecondaryTests.Secondary, self).__init__('secondary-image', 'aktualizr-secondary',
-                                                             secondary_network=True)
+                                                             secondary_network=True,
+                                                             uboot_enable=UBOOT_ENABLE)
 
         def configure(self):
             self._test_ctx.append_config('SECONDARY_SERIAL_ID = "{}"'.format(self.sndry_serial))
@@ -356,7 +357,9 @@ class IpSecondaryTests(OESelftestTestCase):
     class Primary(Image):
         def __init__(self, test_ctx):
             self._test_ctx = test_ctx
-            super(IpSecondaryTests.Primary, self).__init__('primary-image', 'aktualizr', secondary_network=True)
+            super(IpSecondaryTests.Primary, self).__init__('primary-image', 'aktualizr',
+                                                           secondary_network=True,
+                                                           uboot_enable=UBOOT_ENABLE)
 
         def configure(self):
             self._test_ctx.append_config('MACHINE = "qemux86-64"')
