@@ -129,7 +129,7 @@ class ManualControlTests(OESelftestTestCase):
         self.append_config('SOTA_CLIENT_PROV = " aktualizr-shared-prov "')
         self.append_config('SYSTEMD_AUTO_ENABLE_aktualizr = "disable"')
         self.append_config('IMAGE_FSTYPES_remove = "ostreepush garagesign garagecheck"')
-        self.qemu, self.s = qemu_launch(machine='qemux86-64')
+        self.qemu, self.s = qemu_launch(machine='qemux86-64', uboot_enable=UBOOT_ENABLE)
 
     def tearDownLocal(self):
         qemu_terminate(self.s)
@@ -169,7 +169,7 @@ class DeviceCredProvTests(OESelftestTestCase):
         self.append_config('SOTA_CLIENT_PROV = " aktualizr-device-prov "')
         self.append_config('SOTA_DEPLOY_CREDENTIALS = "0"')
         self.append_config('IMAGE_FSTYPES_remove = "ostreepush garagesign garagecheck"')
-        self.qemu, self.s = qemu_launch(machine='qemux86-64')
+        self.qemu, self.s = qemu_launch(machine='qemux86-64', uboot_enable=UBOOT_ENABLE)
         bitbake('build-sysroots -c build_native_sysroot')
 
     def tearDownLocal(self):
@@ -223,7 +223,7 @@ class DeviceCredProvHsmTests(OESelftestTestCase):
         self.append_config('SOTA_CLIENT_FEATURES = "hsm"')
         self.append_config('IMAGE_INSTALL_append = " softhsm-testtoken"')
         self.append_config('IMAGE_FSTYPES_remove = "ostreepush garagesign garagecheck"')
-        self.qemu, self.s = qemu_launch(machine='qemux86-64')
+        self.qemu, self.s = qemu_launch(machine='qemux86-64', uboot_enable=UBOOT_ENABLE)
         bitbake('build-sysroots -c build_native_sysroot')
 
     def tearDownLocal(self):
@@ -434,7 +434,7 @@ class ResourceControlTests(OESelftestTestCase):
         self.append_config('RESOURCE_CPU_WEIGHT_pn-aktualizr = "1000"')
         self.append_config('RESOURCE_MEMORY_HIGH_pn-aktualizr = "50M"')
         self.append_config('RESOURCE_MEMORY_MAX_pn-aktualizr = "1M"')
-        self.qemu, self.s = qemu_launch(machine='qemux86-64')
+        self.qemu, self.s = qemu_launch(machine='qemux86-64', uboot_enable=UBOOT_ENABLE)
 
     def tearDownLocal(self):
         qemu_terminate(self.s)
@@ -483,7 +483,7 @@ class NonSystemdTests(OESelftestTestCase):
         self.append_config('IMAGE_FSTYPES_remove = "ostreepush garagesign garagecheck"')
         self.append_config('DISTRO = "poky-sota"')
         self.append_config('IMAGE_INSTALL_remove += " aktualizr-resource-control"')
-        self.qemu, self.s = qemu_launch(machine='qemux86-64')
+        self.qemu, self.s = qemu_launch(machine='qemux86-64', uboot_enable=UBOOT_ENABLE)
 
     def tearDownLocal(self):
         qemu_terminate(self.s)
