@@ -1,6 +1,7 @@
 import updater_qemux86_64
 from updater_qemux86_64 import GeneralTests, AktualizrToolsTests, SharedCredProvTests, \
-    ManualControlTests, DeviceCredProvTests, DeviceCredProvHsmTests
+    ManualControlTests, DeviceCredProvTests, DeviceCredProvHsmTests, ResourceControlTests, \
+    DeviceCredProvHsmTests
 
 
 updater_qemux86_64.UBOOT_ENABLE = 'no'
@@ -30,4 +31,13 @@ class DeviceCredProvTestsNonOSTree(DeviceCredProvTests):
         super().setUpLocal()
 
 
+class DeviceCredProvHsmTestsNonOSTree(DeviceCredProvHsmTests):
 
+    def setUpLocal(self):
+        self.append_config('IMAGE_INSTALL_remove += " aktualizr-shared-prov"')
+        self.append_config('IMAGE_INSTALL_append += " aktualizr-device-prov-hsm"')
+        super().setUpLocal()
+
+
+class ResourceControlTestsNonOSTree(ResourceControlTests):
+    pass
